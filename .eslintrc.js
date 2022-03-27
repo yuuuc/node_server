@@ -14,5 +14,5 @@ module.exports = {
 		ecmaVersion: 'latest'
 	},
 	plugins: ['@typescript-eslint'],
-	rules: {}
+	rules: { indent: [off, 2], semi: ['error', 'always'] }
 };

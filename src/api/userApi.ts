@@ -1,3 +1,11 @@
+/*
+ * @Version:
+ * @Company:
+ * @Author: yu.chen
+ * @Date: 2022/03/25
+ * @Description:
+ * @LastEditTime: 2022/03/27
+ */
 import express, { Request, Response } from 'express';
 const router = express.Router();
 router.get('/getUser', async (request: Request, response: Response) => {
