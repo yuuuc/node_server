@@ -14,7 +14,27 @@ doc.get('/getDocs', (request: Request, response: Response) => {
 			response.statusCode = 200;
 			msg = Msg.success(res, 'ok');
 		})
-		.catch((err) => {})
+		.catch((err) => {
+			response.statusCode = 500;
+			msg = Msg.fail(err, 'ng');
+		})
+		.finally(() => {
+			response.json(msg);
+		});
+});
+
+doc.get('/getDocByTitle/:title', (request: Request, response: Response) => {
+	let msg;
+	daoService
+		.findByTitle(request.params.title)
+		.then((res) => {
+			response.statusCode = 200;
+			msg = Msg.success(res, 'ok');
+		})
+		.catch((err) => {
+			response.statusCode = 500;
+			msg = Msg.fail(err, 'ng');
+		})
 		.finally(() => {
 			response.json(msg);
 		});
@@ -23,15 +43,21 @@ doc.get('/getDocs', (request: Request, response: Response) => {
 /**
  * 获取文档数据
  */
-doc.get('/getDoc/:id', async (request: Request, response: Response) => {
-	const body = request.body;
-	const query = request.query;
-	const params = request.params;
-	// console.log(query);
-	// console.log(params);
-
-	response.send(body);
-	response.end();
+doc.get('/getDoc/:id', (request: Request, response: Response) => {
+	let msg;
+	daoService
+		.findOneById(request.params.id)
+		.then((res) => {
+			response.statusCode = 200;
+			msg = Msg.success(res, 'ok');
+		})
+		.catch((err) => {
+			response.statusCode = 500;
+			msg = Msg.fail(err, 'ng');
+		})
+		.finally(() => {
+			response.json(msg);
+		});
 });
 
 doc.post('/postDoc', (request: Request, response: Response) => {

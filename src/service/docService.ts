@@ -18,7 +18,43 @@ export class DocService {
 	 */
 	findAll() {
 		// 返回一个promise
-		return DocDao.find({});
+		return new Promise((resolve, reject) => {
+			DocDao.find({}, 'title')
+				.sort({ date: 1 })
+				.then((res) => {
+					resolve(Doc.toDocs(res));
+				})
+				.catch((err) => {
+					reject(err);
+				});
+		});
+	}
+
+	findByTitle(title) {
+		if (title.toString().trim() === '') {
+			return Promise.reject('title is null');
+		}
+		return new Promise((resolve, reject) => {
+			DocDao.find({ title }, 'title')
+				.then((res) => {
+					resolve(Doc.toDocs(res));
+				})
+				.catch((err) => {
+					reject(err);
+				});
+		});
+	}
+
+	findOneById(_id) {
+		return new Promise((resolve, reject) => {
+			DocDao.findById(_id)
+				.then((res) => {
+					resolve(Doc.getDoc(res));
+				})
+				.catch((err) => {
+					reject(err);
+				});
+		});
 	}
 
 	/**
