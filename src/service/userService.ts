@@ -21,22 +21,34 @@ export class UserService {
 		});
 	}
 
-	insertUser(user: User): Promise<string> {
-		const res = user.checkProperty();
-		if (res.state) {
-			user.password = md5(user.password + salt);
-			return new Promise((resolve, reject) => {
-				const userDoc = new UserDao(user);
-				userDoc.save(function (err) {
-					if (err) {
-						reject(err);
-					} else {
-						resolve(OK);
-					}
+	// insertUser(user: User): Promise<string> {
+	// 	const res = user.checkProperty();
+	// 	if (res.state) {
+	// 		user.password = md5(user.password + salt);
+	// 		return new Promise((resolve, reject) => {
+	// 			const userDoc = new UserDao(user);
+	// 			userDoc.save(function (err) {
+	// 				if (err) {
+	// 					reject(err);
+	// 				} else {
+	// 					resolve(OK);
+	// 				}
+	// 			});
+	// 		});
+	// 	} else {
+	// 		return Promise.reject(`参数 ${res.key} 存在问题`);
+	// 	}
+	// }
+
+	findUserById(_id) {
+		return new Promise((resolve, reject) => {
+			UserDao.findById(_id)
+				.then((res) => {
+					resolve(res);
+				})
+				.catch((err) => {
+					reject(err);
 				});
-			});
-		} else {
-			return Promise.reject(`参数 ${res.key} 存在问题`);
-		}
+		});
 	}
 }

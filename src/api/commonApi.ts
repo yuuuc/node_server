@@ -4,7 +4,7 @@
  * @Author: yu.chen
  * @Date: 2022/03/25
  * @Description:
- * @LastEditTime: 2022/03/29
+ * @LastEditTime: 2022/03/31
  */
 import express, { Request, Response } from 'express';
 import { UserService } from '../service/userService';
@@ -18,7 +18,6 @@ router.post('/login', (request: Request, response: Response) => {
 	userService
 		.findUserByUsernameAndPassword(request.body)
 		.then((res) => {
-			console.log(res);
 			response.statusCode = 200;
 			msg = Msg.success(res.clearKeyword(), 'ok');
 		})
