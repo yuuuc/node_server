@@ -1,12 +1,12 @@
 # dep
 
-1. express `yarn add express -g`
-2. typescript `yarn add typescript -g`
-3. @type/node `yarn add @type/node -D`
-4. @type/express `yarn add @type/express -D`
-5. ts-node `yarn add ts-node`
-6. nodemon `yarn add nodemon`
-7. eslint `yarn add eslint`
+1. express `npm i express -g`
+2. typescript `npm i typescript -g`
+3. @type/node `npm i @type/node -D`
+4. @type/express `npm i @type/express -D`
+5. ts-node `npm i ts-node`
+6. nodemon `npm i nodemon`
+7. eslint `npm i eslint`
 
 # tsconfig.json
 
